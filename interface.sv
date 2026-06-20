@@ -1,21 +1,33 @@
 interface fifo_if #(parameter data_width=8)(
-  input logic wr_clk,
-  input logic rd_clk
+    input logic wr_clk,
+    input logic rd_clk
 );
- 
-  //DUT input
-  
-  logic [data_width-1:0] data_in;
-  logic wr_rst,rd_rst;
-  logic wr_en,rd_en;
-  
-  //DUT output
-  logic[data_width-1:0] data_out;
-  logic full,empty;
-  
-  modport Tb(
-    input full,empty,data_out,
-    output wr_rst,rd_rst,wr_en,rd_en,data_in,
-    input wr_clk,rd_clk
-  );
+
+logic [data_width-1:0] data_in;
+logic [data_width-1:0] data_out;
+
+logic wr_rst;
+logic rd_rst;
+
+logic wr_en;
+logic rd_en;
+
+logic full;
+logic empty;
+
+
+modport Tb(
+    input wr_clk,
+    input rd_clk,
+    input full,
+    input empty,
+    input data_out,
+
+    output wr_rst,
+    output rd_rst,
+    output wr_en,
+    output rd_en,
+    output data_in
+);
+
 endinterface
