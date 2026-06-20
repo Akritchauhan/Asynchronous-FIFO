@@ -11,7 +11,7 @@ class scoreboard #(parameter data_width=8);
   
   task run();
     transaction tr;
-    forever begina
+    forever begin
       mon2scb.get(tr)
       
       if(tr.wr_en && !tr.rd_en)begin
